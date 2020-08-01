@@ -1,0 +1,5 @@
+﻿Key,Source,Context,English,german
+stoveKitJT,items,Item,Stove Repair Kit,Ofen-Reparaturset
+stoveKitJTDesc,items,Item,"This stove repair kit is used with a hammer to take a broken stove and make it a working one that you can use.","Dieses Ofenreparaturset wird mit einem Hammer benutzt, um einen kaputten Ofen zu einem funktionierenden Ofen zu machen, den Sie benutzen und abbauen können.
+workingStoveJT,blocks,Block,Working Stove,funktionierender Herd
+workingStoveJTDesc,blocks,Block,"A working stove can be used to cook food and some chemicals in a safe environment.","Ein funktionierender Herd kann zum Kochen von Lebensmitteln und einigen Chemikalien in einer sicheren Umgebung verwendet werden."

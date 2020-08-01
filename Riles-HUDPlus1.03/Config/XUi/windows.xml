@@ -1,0 +1,152 @@
+<configs>
+
+<!--Details displayed in top left corner of screen-->
+	<append xpath="/windows">
+		<window name="RilesHUD">
+			<rect width="80" height="46" pos="9,-9" controller="MapStats" visible="{statvisible}">
+					<sprite depth="1" pos="0,0" height="75" width="80" color="0,0,0,180" type="sliced" foregroundlayer="true"/>				
+				
+					<sprite depth="2" name="tempIcon" width="19" height="19" pos="56,-4" sprite="ui_game_symbol_temperature" color="[iconColor]" foregroundlayer="true"/>
+					<label depth="2" name="tempLabel" pos="-27,-4" width="80" height="18" text="[DECEA3]{playercoretemp}" font_size="18" justify="right"/>				
+
+					<sprite depth="2" name="windIcon" width="19" height="19" pos="56,-29" sprite="ui_game_symbol_wind" color="[iconColor]" foregroundlayer="true"/>
+					<label depth="2" name="windLabel" pos="-27,-29" width="80" height="18" text="[DECEA3]{mapwind}" font_size="18" justify="right"/>
+
+					<sprite depth="2" name="elevIcon" width="19" height="19" pos="56,-54" sprite="ui_game_symbol_climb" color="[iconColor]" foregroundlayer="true"/>
+					<label depth="2" name="elevLabel" pos="-27,-54" width="80" height="18" text="[DECEA3]{mapelevation}" font_size="18" justify="right"/>
+			</rect>
+			
+			
+			<rect name="hud" pos="97,-9" rows="1" cols="1" width="80" controller="PlayerStatsWindow" visible="{statvisible}">
+					<sprite depth="1" pos="0,0" height="75" width="80" color="0,0,0,180" type="sliced" foregroundlayer="true"/>
+
+					<sprite depth="2" name="windowIcon" width="19" height="19" pos="5,-4" sprite="ui_game_symbol_marksmanship" color="[iconColor]" foregroundlayer="true"/>
+					<label depth="2" name="TextContent" pos="32,-4" width="80" height="18" text="[DECEA3]{playerzombiekills}" font_size="18"/>					
+
+					<sprite depth="2" name="windowIcon" width="19" height="19" pos="5,-29" sprite="ui_game_symbol_near_death_trauma" color="[iconColor]" foregroundlayer="true"/>
+					<label depth="2" name="TextContent" pos="32,-29" width="80" height="18" text="[DECEA3]{playerdeaths}" font_size="18"/>
+
+					<sprite depth="2" name="windowIcon" width="19" height="19" pos="5,-54" sprite="ui_game_symbol_run_and_gun" color="[iconColor]" foregroundlayer="true"/>
+					<label depth="2" name="TextContent" pos="32,-54" width="80" height="18" text="[DECEA3]{playerpvpkills}" font_size="18"/>
+			</rect>	
+
+<!-- testing			<rect name="hud" pos="185,-9" rows="1" cols="1" width="80" controller="HUDStatBar" visible="{statvisible}">
+					<sprite depth="1" pos="0,0" height="75" width="80" color="0,0,0,180" type="sliced" foregroundlayer="true"/>
+
+					<sprite depth="2" name="windowIcon" width="19" height="19" pos="5,-4" sprite="ui_game_symbol_add" color="[iconColor]" foregroundlayer="true"/>
+					<label depth="2" name="TextContent" pos="32,-4" width="80" height="18" text="[DECEA3]{_encumberedslots}" font_size="18"/>					
+
+					<sprite depth="2" name="windowIcon" width="19" height="19" pos="5,-29" sprite="ui_game_symbol_add" color="[iconColor]" foregroundlayer="true"/>
+					<label depth="2" name="TextContent" pos="32,-29" width="80" height="18" text="[DECEA3]{encumberedslots}" font_size="18"/>
+
+					<sprite depth="2" name="windowIcon" width="19" height="19" pos="5,-54" sprite="ui_game_symbol_add" color="[iconColor]" foregroundlayer="true"/>
+					<label depth="2" name="TextContent" pos="32,-54" width="80" height="18" text="[DECEA3]{_encumbrance}" font_size="18"/>
+			</rect>	
+-->
+
+
+
+			
+		</window>
+	</append>
+
+<!--Added food and water bars with exact values-->
+	<set xpath="/windows/window[@name='HUDLeftStatBars']/rect[@pos='9,156']/@pos">9,256 </set>
+	<set xpath="/windows/window[@name='HUDLeftStatBars']/rect[@pos='90,132']/@pos">90,232 </set>
+	<append xpath="/windows/window[@name='HUDLeftStatBars']/rect[@side='right']">
+		<rect controller="CharacterFrameWindow">
+			
+					<panel name="header" height="15" depth="1" pos="9999,9999" backgroundspritename="ui_game_panel_header">
+						<label depth="2" name="characterName" pos="42,-6" width="150" height="32" text="" font_size="32"/>
+						<label depth="2" name="levelNumber" pos="240,-10" width="80" height="28" text="" color="[lightGrey]"/>
+					</panel>
+					<rect visible="{showcharacter}" pos="9999,9999" >
+						<panel name="previewFrame" depth="0" pos="0,0" width="10" on_press="true" on_hover="true" disableautobackground="true" snap="false">
+							<rect>
+								<texture depth="2" name="playerPreview" material="Materials/Transparent Colored" size="8,8" globalopacity="false"/>
+							</rect>
+						</panel>
+					</rect>
+					
+			<rect width="171" height="46" pos="0,-150" controller="HUDStatBar" stat_type="Food" visible="{statvisible}">
+				<sprite depth="1" name="border" color="0,0,0,128" type="sliced"/>
+				<sprite depth="2" name="background" color="0,0,0,140" type="sliced" />
+
+				<filledsprite depth="3" name="background" color="110,110,110,128" width="169" type="filled" fill="{statmodifiedmax}" />
+
+				<filledsprite depth="5" name="BarContent" color="0,150,54,128" width="169" type="filled" fill="0"  />
+				<sprite depth="6" name="Icon" atlas="{staticonatlas|once}" sprite="ui_game_symbol_fork" size="35,35" pos="8,-6" foregroundlayer="true"/>
+				<label depth="7" name="TextContent" pos="6,-8" font_size="32" color="[white]" justify="center" pivot="topleft" text="{playerfood}/{playerfoodmax}" height="35" controller="PlayerStatsWindow" />
+
+				<sprite depth="8" name="border" color="0,0,0,255" type="sliced" fillcenter="false"/>
+				<filledsprite depth="8" name="background" color="0,0,0,255" width="171" fillcenter="false" type="filled" fill="{statmodifiedmax}" />
+				<filledsprite depth="3" name="background" color="0,0,0,255" width="170" fillcenter="false" type="filled" fill="{statmodifiedmax}" />
+			</rect>
+
+
+			<rect width="171" height="46" pos="0,-200" controller="HUDStatBar" stat_type="Water" visible="{statvisible}">
+				<sprite depth="1" name="border" color="0,0,0,128" type="sliced"/>
+				<sprite depth="2" name="background" color="0,0,0,140" type="sliced" />
+				
+				<filledsprite depth="3" name="background" color="110,110,110,128" width="169" type="filled" fill="{statmodifiedmax}" />
+
+				<filledsprite depth="5" name="BarContent" color="0,200,255,128" width="169" type="filled" fill="0" />
+				<sprite depth="6" name="Icon" atlas="{staticonatlas|once}" sprite="ui_game_symbol_water" size="35,35" pos="8,-6" foregroundlayer="true"/>
+				<label depth="7" name="TextContent" pos="6,-8" font_size="32" color="[white]" justify="center" pivot="topleft" text="{playerwater}/{playerwatermax}" height="35" controller="PlayerStatsWindow"/>
+
+				<sprite depth="8" name="border" color="0,0,0,255" type="sliced" fillcenter="false"/>
+				<filledsprite depth="8" name="background" color="0,0,0,255" width="171" fillcenter="false" type="filled" fill="{statmodifiedmax}" />
+				<filledsprite depth="3" name="background" color="0,0,0,255" width="170" fillcenter="false" type="filled" fill="{statmodifiedmax}" />
+			</rect>
+
+
+		</rect>
+	</append>
+
+<!--Font Color changes in menus for hard to read colors. Nothing fancy, just easy contrast. -->
+	<setattribute xpath="/windows/window[@name='windowFuel']/panel[@style='header.panel']/label[@style='header.timer']" name="color">[white]</setattribute>
+	<set xpath="/windows/window[@name='windowTrader']/panel[@name='header']/label[@width='300']/@color">[white]</set>
+
+<!--Compass Improvements such as center line and more distance between date and time.-->
+	<set xpath="/windows/window[@name='windowCompass']/sprite[@pos='240,-60']/label/@text">{daytitle}: [{daycolor|always}]{day|always}[-]    {timetitle}: {time|always}</set>
+	<append xpath="/windows/window[@name='windowCompass']">
+		<label depth="20" name="TextContent" pos="50,2" width="380" height="41" text="I" font_size="41" justify="center"/>
+	</append>
+	
+
+<!--Toolbelt Changes, larger xp bar with info.-->
+	<remove xpath="/windows/window[@name='windowToolbelt']/rect" />
+	<set xpath="/windows/window[@name='windowToolbelt']/@height">82</set>
+	<append xpath="/windows/window[@name='windowToolbelt']">
+
+		<rect controller="CharacterFrameWindow">
+			
+					<panel name="header" height="15" depth="1" pos="9999,9999" backgroundspritename="ui_game_panel_header">
+						<label depth="2" name="characterName" pos="42,-6" width="150" height="32" text="" font_size="32"/>
+						<label depth="2" name="levelNumber" pos="240,-10" width="80" height="28" text="" color="[lightGrey]"/>
+					</panel>
+					<rect visible="{showcharacter}" pos="9999,9999" >
+						<panel name="previewFrame" depth="0" pos="0,0" width="10" on_press="true" on_hover="true" disableautobackground="true" snap="false">
+							<rect>
+								<texture depth="2" name="playerPreview" material="Materials/Transparent Colored" size="8,8" globalopacity="false"/>
+							</rect>
+						</panel>
+					</rect>
+			
+
+			<sprite depth="8" name="backgroundMain" pos="0,-7" height="75" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="false" on_press="true" />
+			<grid depth="10" name="inventory" rows="1" cols="8" pos="3,-7" cell_width="75" cell_height="75" controller="Toolbelt" repeat_content="true">
+				<item_stack name="0"/>
+			</grid>
+			<sprite depth="2" pos="0,14" height="22" type="sliced" foregroundlayer="true" color="0,0,0,255" /> <!--black background-->
+			<label depth="5" name="TextContent" pos="0,13" font_size="17" color="[white]" justify="center" pivot="topleft" text="Level: {playerlevel}                   XP^ {playerxptonextlevel}" controller="PlayerStatsWindow"/>
+			<sprite depth="3" pos="3,12" height="18" width="598" color="[darkGrey]" foregroundlayer="true" type="sliced" />
+			<sprite depth="4" pos="3,12" height="18" width="598" color="{xpcolor}" sprite="menu_empty3px" foregroundlayer="true" type="filled" fill="{xp}" />
+		</rect>
+	</append>
+
+</configs>
+
+
+
+

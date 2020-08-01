@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xml>
+	<ModInfo>
+		<Name value="Custom Backpack Buttons V2" />
+		<Description value="Adds Stash All, Stash All But First Row and Stack All buttons to the backpack. Uses UI icons already present in the game for better server compatibility." />
+		<Author value="KhaineGB" />
+		<Version value="1.0" />
+	</ModInfo>
+</xml>
